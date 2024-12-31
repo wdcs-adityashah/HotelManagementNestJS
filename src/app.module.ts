@@ -1,17 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { TableOrder, TableOrderSchema } from './Tables/schemas/tableorder';
+import { TableReservationModule } from './Tables/tables.module';
+import { UsersModule } from './users/users.module';
+import { ItemsModule } from './items/items.module';
 @Module({
-  imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://Aaditya123:Aaditya123@cluster0.xv6gw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-    ),
-    MongooseModule.forFeature([
-      { name: TableOrder.name, schema: TableOrderSchema },
-    ]),
-  ],
+  imports: [TableReservationModule, UsersModule, ItemsModule],
   controllers: [AppController],
   providers: [AppService],
 })
