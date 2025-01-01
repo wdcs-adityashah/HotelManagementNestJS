@@ -30,14 +30,17 @@ export class UsersService {
       password: hashedPassword,
     });
     const savedUser = await newUser.save();
+    console.log('Saved User:', savedUser);
+
+    console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
     const token = jwt.sign(
       { id: savedUser._id, name: savedUser.name, email: savedUser.email },
       process.env.JWT_SECRET || 'your_secret_key',
       { expiresIn: '1h' },
     );
-
-    return {
+    console.log('Generated Token:', token);
+    const responsePayload = {
       token,
       userId: savedUser._id,
       session: {
@@ -48,6 +51,9 @@ export class UsersService {
         },
       },
     };
+
+    console.log('Response Payload:', responsePayload);
+    return responsePayload;
   }
 
   async login(loginDto: LoginDto) {

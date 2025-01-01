@@ -32,9 +32,6 @@ export class TableOrder {
 
   @Prop({ required: true })
   totalAmount: number;
-
-  @Prop({ default: Date.now() })
-  createdAt: Date;
 }
 
 export const TableOrderSchema = SchemaFactory.createForClass(TableOrder);
