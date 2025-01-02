@@ -7,6 +7,7 @@ import { ItemsModule } from './items/items.module';
 import { TableorderModule } from './tableorder/tableorder.module';
 import { ConfigModule } from '@nestjs/config';
 import { SocketappModule } from './socketapp/socketapp.module';
+import { AdminModule } from './admin/admin.module';
 @Module({
   imports: [
     TableReservationModule,
@@ -15,6 +16,7 @@ import { SocketappModule } from './socketapp/socketapp.module';
     TableorderModule,
     ConfigModule.forRoot(),
     SocketappModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

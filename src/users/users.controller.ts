@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Param,
-  Patch,
-  HttpCode,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, HttpCode } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterDto } from 'src/auth/dto/register.dto';
 import { LoginDto } from 'src/auth/dto/login.dto';
@@ -34,12 +26,12 @@ export class UsersController {
     return await this.usersService.getUsers();
   }
 
-  @Patch('block/:id')
+  @Post('block/:id')
   async blockUser(@Param('id') id: string) {
     return await this.usersService.blockUser(id);
   }
 
-  @Patch('unblock/:id')
+  @Post('unblock/:id')
   async unblockUser(@Param('id') id: string) {
     return await this.usersService.unblockUser(id);
   }

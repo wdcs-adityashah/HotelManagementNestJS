@@ -10,7 +10,7 @@ import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { RegisterDto } from '../auth/dto/register.dto';
 import { LoginDto } from '../auth/dto/login.dto';
-
+import { Role } from 'src/auth/role.enum';
 @Injectable()
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
@@ -24,10 +24,17 @@ export class UsersService {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const role =
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+        ? Role.ADMIN
+        : Role.USER;
+
     const newUser = new this.userModel({
       name,
       email,
       password: hashedPassword,
+      role,
     });
     const savedUser = await newUser.save();
     console.log('Saved User:', savedUser);
@@ -48,6 +55,7 @@ export class UsersService {
           id: savedUser._id,
           name: savedUser.name,
           email: savedUser.email,
+          role: savedUser.role,
         },
       },
     };
