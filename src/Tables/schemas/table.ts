@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
@@ -21,11 +20,9 @@ export class TableReservation {
     default: false,
   })
   isProcessed: boolean;
-
   @Prop({
-    type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'user',
+    type: String,
   })
   userId: string;
 }

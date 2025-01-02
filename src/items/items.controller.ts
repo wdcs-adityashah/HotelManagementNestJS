@@ -5,7 +5,7 @@ import {
   Get,
   Param,
   Post,
-  Put,
+  Patch,
 } from '@nestjs/common';
 import { ItemsService } from './items.service';
 import { Items } from './items.schema';
@@ -26,7 +26,7 @@ export class ItemsController {
     return this.itemsService.createMenuItem(createMenuItemDto);
   }
 
-  @Put(':id')
+  @Patch(':id')
   async updateMenuItem(
     @Param('id') id: string,
     @Body() updatedData: Partial<Items>,

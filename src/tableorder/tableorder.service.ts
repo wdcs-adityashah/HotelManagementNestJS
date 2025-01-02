@@ -15,7 +15,9 @@ export class TableorderService {
   async postTableOrder(
     createTableOrder: CreateTableOrder,
   ): Promise<TableOrder> {
-    const newOrder = new this.TableOrderModel(createTableOrder);
+    const newOrder = new this.TableOrderModel({
+      ...createTableOrder,
+    });
     return newOrder.save();
   }
 }

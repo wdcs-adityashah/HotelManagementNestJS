@@ -1,12 +1,9 @@
-import mongoose from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
 @Schema()
 export class TableOrder {
   @Prop({
     required: true,
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user',
+    type: String,
   })
   userId: string;
   @Prop({

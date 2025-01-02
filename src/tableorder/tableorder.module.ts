@@ -4,6 +4,7 @@ import { TableorderService } from './tableorder.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TableOrder } from './tableorder.schema';
 import { TableOrderSchema } from './tableorder.schema';
+import { UsersModule } from 'src/users/users.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
@@ -12,6 +13,7 @@ import { TableOrderSchema } from './tableorder.schema';
     MongooseModule.forFeature([
       { name: TableOrder.name, schema: TableOrderSchema },
     ]),
+    UsersModule,
   ],
   controllers: [TableorderController],
   providers: [TableorderService],
